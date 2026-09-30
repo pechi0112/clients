@@ -37,6 +37,15 @@ describe("IpcSessionRepository", () => {
     expect(result).toEqual(session);
   });
 
+  it("saves and retrieves a cli session", async () => {
+    const session = { some: "data" };
+    await repository.save({ Cli: { id: "Own" } }, session);
+
+    const result = await repository.get({ Cli: { id: "Own" } });
+
+    expect(result).toEqual(session);
+  });
+
   it("removes a session", async () => {
     const session = { some: "data" };
     await repository.save({ BrowserBackground: { id: "Own" } }, session);
